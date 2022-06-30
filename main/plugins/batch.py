@@ -33,7 +33,7 @@ async def get_pvt_content(event, chat, id):
 @Drone.on(events.NewMessage(incoming=True, from_users=AUTH, pattern='/batch'))
 async def _batch(event):
     if not event.is_private:
-        return
+        return await event.reply("You're not authorised!")
     # wtf is the use of fsub here if the command is meant for the owner? 
     # well am too lazy to clean 
     s, r = await force_sub(event.client, fs, event.sender_id, ft) 
@@ -79,14 +79,26 @@ async def _batch(event):
 async def run_batch(userbot, client, sender, link, _range):
     for i in range(_range):
         timer = 60
-        if i < 2500:
+        if i < 25:
             timer = 5
-        if i < 5000 and i > 2500:
+        if i < 50 and i > 25:
             timer = 10
-        if i < 10000 and i > 5000:
+        if i < 100 and i > 50:
             timer = 15
+        if i < 250 and i > 100:
+            timer = 20
+        if i < 500 and i > 250:
+            timer = 25
+        if i < 1000 and i > 500:
+            timer = 30
+        if i < 2500 and i > 1000:
+            timer = 35
+        if i < 5000 and i > 2500:
+            timer = 40
+        if i < 10000 and i > 5000:
+            timer = 45
         if not 't.me/c/' in link:
-            if i < 2500:
+            if i < 25:
                 timer = 2
             else:
                 timer = 3
