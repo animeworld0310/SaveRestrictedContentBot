@@ -33,7 +33,7 @@ async def get_pvt_content(event, chat, id):
 @Drone.on(events.NewMessage(incoming=True, from_users=AUTH, pattern='/batch'))
 async def _batch(event):
     if not event.is_private:
-        return await event.reply("You're not authorised!")
+        return await conv.send_message("You're not authorised!")
     # wtf is the use of fsub here if the command is meant for the owner? 
     # well am too lazy to clean 
     s, r = await force_sub(event.client, fs, event.sender_id, ft) 
